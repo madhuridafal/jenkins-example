@@ -31,7 +31,7 @@ pipeline {
         
         stage ( 'sonarstage' ) {
             steps { 
-                withSonarQubEnv( 'sonar') {
+                withSonarQubeEnv( 'sonar') {
                     withMaven(maven : 'LocalMaven' ) {
                     sh 'mvn clean package sonar:sonar'
                     }
@@ -40,11 +40,10 @@ pipeline {
         }
         stage ('sonar install') {
             steps {
-                withSonarQubeEnv('sonar') {
-                    withMaven(maven : 'LocalMaven') {
-                        sh 'mvn clean install sonar:sonar'
+             withMaven(maven : 'LocalMaven') {
+                        sh 'mvn clean install'
                     }
-                }
+                
             }
         }
                         
