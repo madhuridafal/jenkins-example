@@ -28,5 +28,26 @@ pipeline {
                // }
             //}
        // }
+        
+        stage ( 'sonarstage' ) {
+            steps { 
+                withSonarQubEnv( 'sonar') {
+                    withMaven(Maven : 'LocalMaven' ) {
+                    sh 'mvn clean package sonar:sonar'
+                    }
+                }
+            }
+        }
+        stage ('sonar install') {
+            steps {
+                withSonarQubeEnv('sonar') {
+                    withMaven(Maven : 'LocalMaven') {
+                        sh 'mvn clean install sonar:sonar'
+                    }
+                }
+            }
+        }
+                        
+        
     }
 }
