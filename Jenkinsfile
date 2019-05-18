@@ -2,7 +2,7 @@ pipeline{
 	agent any
 		stages{
 				stage('SCM Checkout'){steps{
-						git 'https://github.com/KirtiVyas/maven-project.git'}
+						git 'https://github.com/madhuridafal/maven-project.git'}
 							}
 				stage('compile source code'){steps{
 							withMaven (maven: 'LocalMaven'){
